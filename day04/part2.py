@@ -25,11 +25,9 @@ def validate(passport):
                     or (unit == 'in' and val >= 59 and val <= 76)):
                 return 0
         if col == 'hcl':
-            if not (len(v) == 7 and v[0] == '#'):
+            if not (len(v) == 7 and v[0] == '#'
+                    and all([d in "abcdef0123456789" for d in v[1:]])):
                 return 0
-            for i in range(1, 7):
-                if (v[i] < 'a' or v[i] > 'f') and (v[i] < '0' or v[i] > '9'):
-                    return 0
         if col == 'ecl':
             if v not in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']:
                 return 0
